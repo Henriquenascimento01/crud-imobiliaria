@@ -1,25 +1,28 @@
 @extends('layouts.main')
 
-
 @section('content')
-    <form action="{{ route('customer.store') }}" method="POST">
+    <form action="{{ route('customer.update', $customer->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <div class="card-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome</label>
-                <input type="text" class="form-control" placeholder="Nome" id="name" name="name">
+                <input type="text" class="form-control" placeholder="Nome" id="name" name="name"
+                    value="{{ $customer->name }}">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Profissão</label>
-                <input type="text" class="form-control" placeholder="Profissão" id="profession" name="profession">
+                <input type="text" class="form-control" placeholder="Profissão" id="profession" name="profession"
+                    value="{{ $customer->profession }}">
             </div>
             <div class="form-group">
                 <div class="form-group">
                     <label for="exampleInputPassword1">CPF</label>
-                    <input type="text" class="form-control" placeholder="CPF" id="cpf" name="cpf">
+                    <input type="text" class="form-control" placeholder="CPF" id="cpf" name="cpf"
+                        value="{{ $customer->cpf }}">
                 </div>
             </div>
-            <button type="submit" id="send-customer-data" class="btn btn-primary">Enviar</button>
+            <button type="submit" id="send-customer-data-edit" class="btn btn-primary">Editar</button>
         </div>
     </form>
 @endsection
@@ -31,12 +34,9 @@
     <script>
         $(document).ready(function() {
             $("#cpf").mask("999.999.999-99");
-
         });
 
-        // ...
-
-        $('#send-customer-data').click(function(event) {
+        $('#send-customer-data-edit').click(function(event) {
             event.preventDefault();
 
             let isValid = true;
@@ -65,20 +65,20 @@
             if (!isValid) {
                 Swal.fire("Erro", "Todos os campos são obrigatórios", "error");
             } else {
-                let formData = $('form').serialize(); 
+                let formData = $('form').serialize();
 
                 $.ajax({
-                    url: '/customer/store',
+                    url: '{{ route('customer.update', $customer->id) }}',
                     type: 'POST',
                     data: formData,
                     success: function(response) {
-                        Swal.fire("Sucesso", "Cliente cadastrado com sucesso", "success");
+                        Swal.fire("Sucesso", "Cliente editado com sucesso", "success");
                         $("#cpf").val('');
                         $("#name").val('');
                         $("#profession").val('');
                     },
                     error: function() {
-                        Swal.fire("Erro", "Ocorreu um erro ao cadastrar o cliente", "error");
+                        Swal.fire("Erro", "Ocorreu um erro ao editar o cliente", "error");
                     }
                 });
             }
@@ -86,10 +86,4 @@
             return isValid;
         });
     </script>
-
-    <script src="{{ asset('js/clients/create/clientTypeSelect.js') }}"></script>
-    <script src="{{ asset('js/clients/create/getZipcodeInfo.js') }}"></script>
-    <script src="{{ asset('js/clients/create/checkIfEmailsExists.js') }}"></script>
-    <script src="{{ asset('js/clients/create/checkIfCpfExists.js') }}"></script>
-    <script src="{{ asset('js/clients/create/checkIfCnpjExistsAndGetInfo.js') }}"></script>
 @endsection

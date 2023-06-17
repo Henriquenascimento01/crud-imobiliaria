@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use App\Models\Customer;
+use App\Models\Property;
 
-class CustomerServices
+class PropertyServices
 {
     protected $model;
 
-    public function __construct(Customer $model)
+    public function __construct(Property $model)
     {
         $this->model = $model;
     }
@@ -23,14 +23,9 @@ class CustomerServices
         return $this->model->create($data);
     }
 
-    public function findCustomerById($id)
-    {
-        return $this->model->findOrFail($id);
-    }
-
     public function update($id, array $data)
     {
-        $customer = $this->findCustomerById($id);
+        $customer = $this->model->findOrFail($id);
         $customer->update($data);
 
         return $customer;
@@ -38,7 +33,7 @@ class CustomerServices
 
     public function delete($id)
     {
-        $customer = $this->findCustomerById($id);
+        $customer = $this->model->findOrFail($id);
         $customer->delete();
     }
 }

@@ -61,53 +61,6 @@
                             class="fas fa-bars"></i></a>
                 </li>
             </ul>
-
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                {{-- <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-primary navbar-badge">{{ count(session()->get('notifications')) }}</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">{{count(session()->get('notifications'))}} Notificações</span>
-                        @if (session()->get('notifications')->where('type', 'expire_in_30')->count() > 0)
-                            <div class="dropdown-divider"></div>
-                            <a href="{{route('notifications.index')}}?filter_type=expire_in_30" class="dropdown-item">
-                                <i class="fas fa-file mr-2"></i> {{session()->get('notifications')->where('type', 'expire_in_30')->count()}} laudo(s) vencem em:
-                                <span class="float-right text-muted text-sm">30 dias</span>
-                            </a>
-                        @endif
-
-                        @if (session()->get('notifications')->where('type', 'expire_in_7')->count() > 0)
-                        <div class="dropdown-divider"></div>
-                        <a href="{{route('notifications.index')}}?filter_type=expire_in_7" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> {{session()->get('notifications')->where('type', 'expire_in_7')->count()}} laudo(s) vencem em:
-                            <span class="float-right text-muted text-sm">7 dias</span>
-                        </a>
-                        @endif
-
-                        @if (session()->get('notifications')->where('type', 'expired_30_days_ago')->count() > 0)
-                        <div class="dropdown-divider"></div>
-                        <a href="{{route('notifications.index')}}?filter_type=expired_30_days_ago" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> {{session()->get('notifications')->where('type', 'expired_30_days_ago')->count()}} laudo(s) venceram ha:
-                            <span class="float-right text-muted text-sm">30 dias</span>
-                        </a>
-                        @endif
-
-                        @if (session()->get('notifications')->where('type', 'expired_7_days_ago')->count() > 0)
-                        <div class="dropdown-divider"></div>
-                        <a href="{{route('notifications.index')}}?filter_type=expired_7_days_ago" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> {{session()->get('notifications')->where('type', 'expired_7_days_ago')->count()}} laudo(s) venceram ha:
-                            <span class="float-right text-muted text-sm">7 dias</span>
-                        </a>
-                        @endif
-
-                        <div class="dropdown-divider"></div>
-                        <a href="{{route('notifications.index')}}" class="dropdown-item dropdown-footer">Ver tudo</a>
-                    </div>
-                </li> --}}
-            </ul>
         </nav>
         <!-- /.navbar -->
 
@@ -130,13 +83,10 @@
                 </div>
             </section>
         </div>
-        <footer class="main-footer">
-            <strong>Copyright &copy; {{ date('Y') }} <a href="">ProDiesel</a>.</strong>
+        <footer class="main-footer" style="text-align: center;">
+            <strong>Copyright &copy; {{ date('Y') }} <a href="">Imobiliaria</a>.</strong>
             Todos os Direitos Reservados.
-            Desenvolvido por <a href="https://wexark.com.br" target="_blank">Wexark</a>
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Versão</b> 1.0.0
-            </div>
+            Desenvolvido por <a href="" target="_blank">Henrique Nascimento</a>
         </footer>
 
         <aside class="control-sidebar control-sidebar-dark">
@@ -150,7 +100,7 @@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
-    </script>
+        </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
@@ -177,7 +127,7 @@
     <script src="{{ asset('dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
-
+    
     @yield('scripts')
 </body>
 

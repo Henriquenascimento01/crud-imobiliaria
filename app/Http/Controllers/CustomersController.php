@@ -16,7 +16,9 @@ class CustomersController extends Controller
 
     public function index()
     {
-        return view('application.customers.index');
+        $customers = $this->customerServices->getAll();
+
+        return view('application.customers.index', compact('customers'));
     }
 
     public function create()
@@ -24,18 +26,27 @@ class CustomersController extends Controller
         return view('application.customers.create');
     }
 
+    public function edit($id)
+    {
+        $customer = $this->customerServices->findCustomerById($id);
+
+        return view('application.customers.edit', compact('customer'));
+    }
+
     public function store(Request $request)
     {
         $this->customerServices->create($request->all());
 
-        return back(); 
+        return back();
     }
 
     public function update(Request $request, $id)
     {
+        $this->customerServices->update($id, $request->all());
     }
 
     public function delete($id)
     {
+        $this->customerServices->delete($id);
     }
 }
