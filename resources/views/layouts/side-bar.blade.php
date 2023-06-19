@@ -48,7 +48,7 @@
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a href="" class="nav-link">
+                             <a href="{{ route('properties.index') }}" class="nav-link">
                                  <i class="fas fa-list nav-icon"></i>
                                  <p>Ver todos</p>
                              </a>
