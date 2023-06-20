@@ -104,13 +104,13 @@
                                 _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
-                                Swal.fire("Sucesso", "Cliente deletado com sucesso",
+                                Swal.fire("Sucesso", "Imóvel deletado com sucesso",
                                     "success");
                                 location.reload();
                             },
                             error: function() {
                                 Swal.fire('Erro',
-                                    'Ocorreu um erro ao excluir o cliente', 'error');
+                                    'Ocorreu um erro ao excluir o imóvel', 'error');
                             }
                         });
                     }

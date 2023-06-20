@@ -98,13 +98,6 @@
                 $("#address_number").css('border', '');
             }
 
-            if ($("#address_complement").val() == "") {
-                $("#address_complement").css('border', '2px solid red');
-                isValid = false;
-            } else {
-                $("#address_complement").css('border', '');
-            }
-
             if ($("#address_city").val() == "") {
                 $("#address_city").css('border', '2px solid red');
                 isValid = false;
