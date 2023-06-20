@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Property;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PropertyServices
 {
@@ -20,20 +22,18 @@ class PropertyServices
 
     public function create(array $data)
     {
+        $imageName = Str::random(10) . '.' . $data['property_photo']->getClientOriginalExtension();
+
+        $path = Storage::disk('public')->putFileAs('property_photos', $data['property_photo'], $imageName);
+
+
+        $data['property_photo'] = $path; 
+
         return $this->model->create($data);
     }
 
-    public function update($id, array $data)
+    public function findPropertyById($propertyId)
     {
-        $customer = $this->model->findOrFail($id);
-        $customer->update($data);
-
-        return $customer;
-    }
-
-    public function delete($id)
-    {
-        $customer = $this->model->findOrFail($id);
-        $customer->delete();
+        return $this->model->findOrFail($propertyId);
     }
 }

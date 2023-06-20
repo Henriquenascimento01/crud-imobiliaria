@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CustomerServices;
 use App\Services\PropertyServices;
 use Illuminate\Http\Request;
 
 class PropertiesController extends Controller
 {
     protected $propertiesServices;
+    protected $customerServices;
 
-    public function __construct(PropertyServices $propertiesServices)
+    public function __construct(PropertyServices $propertiesServices, CustomerServices $customerServices)
     {
         $this->propertiesServices = $propertiesServices;
+        $this->customerServices = $customerServices;
     }
 
     public function index()
@@ -23,7 +26,9 @@ class PropertiesController extends Controller
 
     public function create()
     {
-        return view('application.properties.create');
+        $customers = $this->customerServices->getAll();
+
+        return view('application.properties.create', compact('customers'));
     }
 
     public function store(Request $request)
@@ -33,11 +38,10 @@ class PropertiesController extends Controller
         return back();
     }
 
-    public function update(Request $request, $id)
+    public function show($propertyId)
     {
-    }
+        $property = $this->propertiesServices->findPropertyById($propertyId);
 
-    public function delete($id)
-    {
+        return view('application.properties.show', compact('property'));
     }
 }

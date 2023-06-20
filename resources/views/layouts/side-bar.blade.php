@@ -32,7 +32,7 @@
                          </li>
                      </ul>
                  </li>
-                 {{-- Máquinas --}}
+                 {{-- Imóveis --}}
                  <li class="nav-item">
                      <a href="#" class="nav-link">
                          <p>
@@ -42,7 +42,7 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
-                             <a href="" class="nav-link">
+                             <a href="{{ route('property.create') }}" class="nav-link">
                                  <i class="fas fa-user-plus nav-icon"></i>
                                  <p>Cadastrar</p>
                              </a>

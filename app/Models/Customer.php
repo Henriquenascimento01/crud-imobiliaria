@@ -16,4 +16,9 @@ class Customer extends Model
         'profession',
         'cpf',
     ];
+
+    public function Properties()
+    {
+        return $this->hasMany(Property::class);
+    }
 }

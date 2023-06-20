@@ -63,13 +63,10 @@
         <div id="cards-container" class="row">
             @foreach ($properties as $property)
                 <div class="card col-md-3">
-                    <img src="{{ asset('/img/moradas-do-bosque.png') }}" alt="">
+                    <img src="{{ asset('storage/' . $property->property_photo) }}" alt="">
                     <div class="card-body">
                         <h5 class="card-name">{{ $property->property_name }}</h5>
-                        <form action="{{ route('property.store') }}" method="POST" enctype="multpart/form-data">
-                            @csrf
-                            <a href="" class="btn btn-primary mt-5">Ver mais</a>
-                        </form>
+                        <a href="{{ route('property.show', ['propertyId' => $property->id]) }}" class="btn btn-primary mt-5">Ver mais</a>
                     </div>
                 </div>
             @endforeach
@@ -77,7 +74,7 @@
     </div>
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 
     <script>
@@ -121,4 +118,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}

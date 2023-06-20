@@ -20,6 +20,11 @@ class Property extends Model
         'address_city',
         'address_state',
         'address_zip_code',
-        'user_id',
+        'customer_id',
     ];
+
+    public function Customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
