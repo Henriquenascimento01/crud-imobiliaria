@@ -27,7 +27,7 @@ class PropertyServices
         $path = Storage::disk('public')->putFileAs('property_photos', $data['property_photo'], $imageName);
 
 
-        $data['property_photo'] = $path; 
+        $data['property_photo'] = $path;
 
         return $this->model->create($data);
     }
@@ -35,5 +35,10 @@ class PropertyServices
     public function findPropertyById($propertyId)
     {
         return $this->model->findOrFail($propertyId);
+    }
+
+    public function getNumberOfProperties()
+    {
+        return $this->model->count();
     }
 }

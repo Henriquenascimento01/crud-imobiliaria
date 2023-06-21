@@ -41,4 +41,9 @@ class CustomerServices
         $customer = $this->findCustomerById($id);
         $customer->delete();
     }
+
+    public function getNumberOfCustomers()
+    {
+        return $this->model->count();
+    }
 }
