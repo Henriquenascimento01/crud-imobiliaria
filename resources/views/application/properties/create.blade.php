@@ -14,6 +14,10 @@
                     name="property_name">
             </div>
             <div class="form-group">
+                <label for="address_zip_code">CEP</label>
+                <input type="text" class="form-control" placeholder="CEP" id="address_zip_code" name="address_zip_code">
+            </div>
+            <div class="form-group">
                 <label for="address_street">Rua</label>
                 <input type="text" class="form-control" placeholder="Rua" id="address_street" name="address_street">
             </div>
@@ -35,10 +39,6 @@
                 <input type="text" class="form-control" placeholder="Estado" id="address_state" name="address_state">
             </div>
             <div class="form-group">
-                <label for="address_zip_code">CEP</label>
-                <input type="text" class="form-control" placeholder="CEP" id="address_zip_code" name="address_zip_code">
-            </div>
-            <div class="form-group">
                 <label for="user_id">Propetário</label>
                 <select class="form-control" id="customer_id" name="customer_id">
                     <option value="">Selecione</option>
@@ -55,10 +55,31 @@
 @section('scripts')
     <script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
 
     <script>
         $(document).ready(function() {
             $("#address_zip_code").mask("99.999-999");
+
+            $('#address_zip_code').on('blur', function() {
+                var $this = $(this);
+                if ($this.val().length === 10) {
+                    let cep = $this.val();
+                    let unformattedCep = cep.replace('-', '');
+                    unformattedCep = unformattedCep.replace('.', '');
+                    unformattedCep = unformattedCep.replace('.', '');
+                    axios.get('https://viacep.com.br/ws/' + unformattedCep + '/json/')
+                        .then(response => {
+                            var data = response.data;
+                            $("#address_street").val(data.logradouro);
+                            $("#address_state").val(data.uf);
+                            $("#address_city").val(data.localidade);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                }
+            });
         });
 
         $('#send-customer-data').click(function(event) {
