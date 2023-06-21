@@ -61,7 +61,6 @@
 
     <script>
         $(document).ready(function() {
-            // Handler para o clique no botão de exclusão do cliente
             $('.customer-delete').click(function(event) {
                 event.preventDefault();
 
@@ -80,7 +79,6 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Enviar requisição AJAX para excluir o cliente
                         $.ajax({
                             url: deleteUrl,
                             type: 'DELETE',
@@ -88,14 +86,11 @@
                                 _token: '{{ csrf_token() }}'
                             },
                             success: function(response) {
-                                // Exibir mensagem de sucesso
                                 Swal.fire("Sucesso", "Cliente deletado com sucesso",
                                     "success");
-                                // Recarregar a página
                                 location.reload();
                             },
                             error: function() {
-                                // Exibir mensagem de erro
                                 Swal.fire('Erro',
                                     'Ocorreu um erro ao excluir o cliente', 'error');
                             }

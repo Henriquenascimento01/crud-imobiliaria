@@ -56,10 +56,6 @@
     <script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
 
-@section('scripts')
-    <script src="{{ asset('js/jquery.maskedinput.js') }}"></script>
-    <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-
     <script>
         $(document).ready(function() {
             $("#address_zip_code").mask("99.999-999");
@@ -162,12 +158,4 @@
             return isValid;
         });
     </script>
-@endsection
-
-
-<script src="{{ asset('js/clients/create/clientTypeSelect.js') }}"></script>
-<script src="{{ asset('js/clients/create/getZipcodeInfo.js') }}"></script>
-<script src="{{ asset('js/clients/create/checkIfEmailsExists.js') }}"></script>
-<script src="{{ asset('js/clients/create/checkIfCpfExists.js') }}"></script>
-<script src="{{ asset('js/clients/create/checkIfCnpjExistsAndGetInfo.js') }}"></script>
 @endsection
